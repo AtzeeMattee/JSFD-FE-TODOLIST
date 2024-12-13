@@ -67,7 +67,7 @@ const RegistrationForm = () => {
 
     return <div className="card">
         <img src={Logo} className="logo" alt="logo"/>
-        <h2>Accedi</h2>
+        <h2>Registrati</h2>
         <form onSubmit={submitHandler}>
             <Input label="Nome"
                    type="text"
@@ -99,6 +99,9 @@ const RegistrationForm = () => {
                    error={formInvalid.passwordDoNotMatch && 'Le password devono corrispondere'} />
             <button>Registrati</button>
         </form>
+        <div className={styles.backToLogin}>
+                <Link to={'/'}><Far/>Torna al Login</Link>
+            </div>
     </div>
 }
 

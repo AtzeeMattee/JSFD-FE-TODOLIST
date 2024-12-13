@@ -3,10 +3,10 @@ import useInput from "../../../hooks/useInput.js";
 import Input from "../../Input/Input.jsx";
 import Textarea from "../../Textarea/Textarea.jsx";
 
-const AddEditActivity = ({onSubmit, todo = null}) => {
-    const {value: dueDateValue, handleChange: handleDateChange} = useInput(todo?.dueDate || '');
-    const {value: nameValue, handleChange: handleTitleChange} = useInput(todo?.name || '');
-    const {value: descriptionValue, handleChange: handleDescriptionChange} = useInput(todo?.description || '');
+const AddEditActivity = ({onSubmit, activity = null}) => {
+    const {value: dueDateValue, handleChange: handleDateChange} = useInput(activity?.dueDate || '');
+    const {value: nameValue, handleChange: handleTitleChange} = useInput(activity?.name || '');
+    const {value: descriptionValue, handleChange: handleDescriptionChange} = useInput(activity?.description || '');
 
     const handleSubmit = (event) => {
         event.preventDefault();
