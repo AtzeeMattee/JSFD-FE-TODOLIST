@@ -1,16 +1,19 @@
-import { useEffect, createContext, useState } from "react"
+import { useEffect, createContext, useState } from "react";
 
-export const ThemeContext = createContext({})
+export const ThemeContext = createContext({});
 
 export const ThemeProvider = ({ children }) => {
-    const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || 'light')
 
-    useEffect(() =>{
-        console.log(theme);
-        console.log(document.querySelector('html').setAttribute('data-theme', theme))
-    },[theme]);
+  useEffect(() => {
+    console.log(theme);
+    document.querySelector("html").setAttribute("data-theme", theme)
+    localStorage.setItem('theme', theme);
+    }, [theme]);
 
-    return <ThemeContext.Provider value={{theme, setTheme}}>{children}</ThemeContext.Provider>
-
-}
-
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};

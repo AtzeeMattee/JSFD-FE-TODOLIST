@@ -3,18 +3,25 @@ import {useContext} from "react";
 import {ThemeContext} from "../../contexts/ThemeProvider.jsx";
 import {useSelector} from "react-redux";
 import {UserSelector} from "../../reducers/user.slice.js";
+import useLogout from "../../hooks/useLogout.jsx"
+import { FaRegSun, FaMoon, FaArrowRightFromBracket } from 'react-icons/fa6';
 
 const Header = () => {
     const {theme, setTheme} = useContext(ThemeContext);
     const user = useSelector(UserSelector);
+    const {logout} = useLogout();
 
     const switchTheme = () => {
         setTheme((prevTheme) => prevTheme==='light' ? 'dark' : 'light');
     }
+
     return <header className={styles.header}>
-       <div>{user && user.displayName ? user.displayName : 'Non sei loggato'}</div>
-        <div className={styles.themeSelector} onClick={switchTheme}>
-            {theme === 'dark'? <div>️ ☀️</div> : <div>️🌙</div>}
+        <div>{user.displayName || 'Non sei loggato'}</div>
+        <div className={styles.button__container}>
+            <button onClick={switchTheme}>
+                { theme === 'dark' ? <FaRegSun /> : <FaMoon /> }
+            </button>
+            <button onClick={logout}>️<FaArrowRightFromBracket/></button>
         </div>
     </header>
 }

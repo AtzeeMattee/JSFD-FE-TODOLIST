@@ -1,17 +1,15 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width:100%;
   text-align: center;
+  height:100%;
 }
 
 .card {
   padding: 2em;
-  background-color: #2b3a49;
+  background-color: var(--secondary-background);
   border-radius: 8px;
   box-shadow: 1px 1px 8px -3px rgba(0, 0, 0, 0.5);
   min-width:300px;
-  
 }
 
 .logo {
@@ -23,34 +21,29 @@
 }
 
 [data-theme='light'] {
-  .card {
-    background-color: #ffffff;
-  }
-
   .logo { filter: invert(1); }
 }
 
 .modal__buttons {
-  margin-top: 20px;
+  margin-top:20px;
   display: flex;
   gap: 5px;
   justify-content: flex-end;
 }
 
 .button {
-  display: flex;
+  display:flex;
   align-items: center;
   justify-content: center;
   gap: 3px;
 }
-
 .confirm__button{
-  background-color: #6cb444 ;
-  color: #ffffff;
+  background-color: #6cb444;
+  color:#ffffff;
 }
 
 .delete__button {
   background-color: #e34646;
-  color: #ffffff;
-  transition: all .3s ease-in-out;
+  color:#ffffff;
+  transition:all .3s ease-in-out;
 }
