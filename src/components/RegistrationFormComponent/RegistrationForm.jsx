@@ -61,7 +61,7 @@ const RegistrationForm = () => {
 
         register(payload).then(res => {
             console.log(res);
-            navigate('/todo-list')
+            navigate('/activity-list')
         }).catch(err => console.log(err));
     }
 

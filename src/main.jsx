@@ -9,9 +9,11 @@ import RegistrationForm from "./components/RegistrationFormComponent/Registratio
 import {Provider} from "react-redux";
 import {persistor, store} from "./store/store"
 import {PersistGate} from "redux-persist/integration/react";
-import ActivityList from "./components/Activity/ActivityList/ActivityList.jsx";
 import ActivitiesPage from "./components/Activity/ActivitiesPage/ActivitiesPage.jsx";
-import MainLayout from './components/MainLayout/MainLayout.jsx';
+import AuthLayout from "./components/AuthLayout/AuthLayout.jsx";
+import MainLayout from "./components/MainLayout/MainLayout.jsx";
+import ErrorPage from "./components/ErrorPage/ErrorPage.jsx";
+import ActivityDetailPage from "./components/Activity/ActivityDetailPage/ActivityDetailPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -19,14 +21,18 @@ const router = createBrowserRouter([
         element: <App/>,
         children: [
             {
-                index: true,
-                element: <LoginForm/>
+                element: <AuthLayout/>,
+                children: [
+                    {
+                        index: true,
+                        element: <LoginForm/>
+                    },
+                    {
+                        path: 'registration',
+                        element: <RegistrationForm/>
+                    }
+                ]
             },
-            {
-                path: 'registration',
-                element: <RegistrationForm/>
-            },
-
             {
                 element: <MainLayout />,
                 children: [
@@ -34,14 +40,17 @@ const router = createBrowserRouter([
                         element: <ProtectedRoute/>,
                         children: [
                             {
-                                path: 'todo-list',
+                                path: 'activity-list',
                                 element: <ActivitiesPage/>
+                            },
+                            {
+                                path: 'activity/:id',
+                                element: <ActivityDetailPage />
                             }
                         ]
                     }
                 ]
             }
-
         ]
     }
 ]);

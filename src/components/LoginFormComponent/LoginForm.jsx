@@ -1,9 +1,10 @@
-import { useState} from "react";
+import {useState} from "react";
 import Logo from "../../assets/logo-tnv-academy.png"
 import {Link, useNavigate} from "react-router";
 import Input from "../Input/Input.jsx";
 import useInput from "../../hooks/useInput.js";
 import styles from "./LoginForm.module.css";
+
 import {login} from "../../services/login.service.js";
 import {hasMinLength, isEmail} from "../../util/validation.js";
 import {useDispatch} from "react-redux";
@@ -46,10 +47,11 @@ const LoginForm = () => {
             password: passwordValue,
         }
 
-        login(payload).then(data => {
-            dispatch(setUser(data));
-            navigate('/todo-list')
-        }).catch(err => console.log(err));
+        const res = await login(payload)
+        if (res) {
+            dispatch(setUser(res));
+            navigate('/activity-list')
+        }
     }
 
 
@@ -63,7 +65,7 @@ const LoginForm = () => {
                    name="email"
                    value={emailValue}
                    onChange={handleEmailChange}
-                   error={formInvalid.email && 'Digita una mail valida'} />
+                   error={formInvalid.email && 'Digita una mail valida'}/>
 
             <Input label="Password"
                    id="password"
@@ -71,7 +73,7 @@ const LoginForm = () => {
                    name="password"
                    value={passwordValue}
                    onChange={handlePasswordChange}
-                   error={formInvalid.password && 'La password deve contenere almeno 8 caratteri'} />
+                   error={formInvalid.password && 'La password deve contenere almeno 8 caratteri'}/>
             <div className={styles.registrationLink}>
                 <Link to={'/registration'}>Registrati</Link>
             </div>

@@ -6,7 +6,7 @@ import { format } from "date-fns";
 
 const AddEditActivity = ({onSubmit, activity = null}) => {
     const formattedDate= activity?.dueDate ? format(new Date(activity?.dueDate), 'yyyy-MM-dd'): ''
-    const {value: dueDateValue, handleChange: handleDateChange} = useInput(activity?.dueDate || '');
+    const {value: dueDateValue, handleChange: handleDateChange} = useInput(formattedDate);
     const {value: nameValue, handleChange: handleTitleChange} = useInput(activity?.name || '');
     const {value: descriptionValue, handleChange: handleDescriptionChange} = useInput(activity?.description || '');
 
